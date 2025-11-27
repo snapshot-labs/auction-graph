@@ -41,6 +41,9 @@ type AuctionDetail @entity {
   currentClearingOrderBuyAmount: BigInt!
   currentClearingPrice: BigDecimal!
   currentBiddingAmount: BigInt!
+  # From contract after finalization
+  clearingPriceOrder: Bytes
+  volumeClearingPriceOrder: BigInt
   isAtomicClosureAllowed: Boolean!
   isPrivateAuction: Boolean!
   interestScore: BigDecimal!

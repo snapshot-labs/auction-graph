@@ -74,6 +74,13 @@ export function handleAuctionCleared(event: AuctionCleared): void {
 		);
 	}
 
+	// We need to store clearingPriceOrder and volumeClearingPriceOrder to compute claim proceeds
+	const auction = EasyAuction.bind(event.address);
+	const eventAuctionData = auction.auctionData(auctionId);
+
+	auctionDetails.clearingPriceOrder = event.params.clearingPriceOrder
+	auctionDetails.volumeClearingPriceOrder = eventAuctionData.getVolumeClearingPriceOrder();
+
 	auctionDetails.save();
 }
 
