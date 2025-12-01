@@ -1,6 +1,9 @@
 import { BigDecimal, BigInt } from "@graphprotocol/graph-ts";
 
-// Function that sorts orders from highest price to lowest price
+// Function that sorts orders
+// 1. their price - buyAmount/sellAmount
+// 2. by the sellAmount
+// 3. their userId
 function sortOrders(orders: Array<string>): Array<string> {
 	orders.sort((a, b) => {
 		let orderA = a.split("-");
@@ -22,22 +25,22 @@ function sortOrders(orders: Array<string>): Array<string> {
 
 		// Check if price of order A is greater than order B
 		if (orderAPrice.gt(orderBPrice)) {
-			return 1;
+			return -1;
 		}
 		if (orderAPrice.lt(orderBPrice)) {
-			return -1;
+			return 1;
 		}
 		if (orderABiddingTokenAmount.gt(orderBBiddingTokenAmount)) {
-			return 1;
-		}
-		if (orderABiddingTokenAmount.lt(orderBBiddingTokenAmount)) {
 			return -1;
 		}
-		if (orderAUserId.gt(orderBUserId)) {
+		if (orderABiddingTokenAmount.lt(orderBBiddingTokenAmount)) {
 			return 1;
 		}
+		if (orderAUserId.gt(orderBUserId)) {
+			return -1;
+		}
 
-		return -1;
+		return 0;
 	});
 	return orders;
 }
