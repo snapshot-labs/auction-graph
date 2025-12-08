@@ -49,3 +49,29 @@ type AuctionDetail @entity {
   interestScore: BigDecimal!
   usdAmountTraded: BigDecimal!
 }
+
+type AuctionHourData @entity {
+  id: ID!
+  auction: AuctionDetail!
+  startTimestamp: Int!
+  open: BigDecimal!
+  high: BigDecimal!
+  low: BigDecimal!
+  close: BigDecimal!
+  volumeTotal: BigDecimal!
+  biddingAmountTotal: BigInt!
+  bidCount: Int!
+}
+
+type AuctionMinuteData @entity {
+  id: ID!
+  auction: AuctionDetail!
+  startTimestamp: Int!
+  open: BigDecimal!
+  high: BigDecimal!
+  low: BigDecimal!
+  close: BigDecimal!
+  volumeTotal: BigDecimal!
+  biddingAmountTotal: BigInt!
+  bidCount: Int!
+}
