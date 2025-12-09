@@ -428,7 +428,6 @@ function updateTimeSeriesEntities(
 		minuteData.low = clearingPrice;
 		minuteData.volumeTotal = volume;
 		minuteData.biddingAmountTotal = biddingAmount;
-		minuteData.bidCount = 1;
 	} else {
 		if (clearingPrice.gt(minuteData.high)) {
 			minuteData.high = clearingPrice;
@@ -438,7 +437,6 @@ function updateTimeSeriesEntities(
 		}
 		minuteData.volumeTotal = minuteData.volumeTotal.plus(volume);
 		minuteData.biddingAmountTotal = minuteData.biddingAmountTotal.plus(biddingAmount);
-		minuteData.bidCount = minuteData.bidCount + 1;
 	}
 	minuteData.close = clearingPrice;
 	minuteData.save();
@@ -454,7 +452,6 @@ function updateTimeSeriesEntities(
 		hourData.low = clearingPrice;
 		hourData.volumeTotal = volume;
 		hourData.biddingAmountTotal = biddingAmount;
-		hourData.bidCount = 1;
 	} else {
 		if (clearingPrice.gt(hourData.high)) {
 			hourData.high = clearingPrice;
@@ -464,7 +461,6 @@ function updateTimeSeriesEntities(
 		}
 		hourData.volumeTotal = hourData.volumeTotal.plus(volume);
 		hourData.biddingAmountTotal = hourData.biddingAmountTotal.plus(biddingAmount);
-		hourData.bidCount = hourData.bidCount + 1;
 	}
 	hourData.close = clearingPrice;
 	hourData.save();

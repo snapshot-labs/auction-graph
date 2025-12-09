@@ -60,7 +60,6 @@ type AuctionHourData @entity {
   close: BigDecimal!
   volumeTotal: BigDecimal!
   biddingAmountTotal: BigInt!
-  bidCount: Int!
 }
 
 type AuctionMinuteData @entity {
@@ -73,5 +72,4 @@ type AuctionMinuteData @entity {
   close: BigDecimal!
   volumeTotal: BigDecimal!
   biddingAmountTotal: BigInt!
-  bidCount: Int!
 }
