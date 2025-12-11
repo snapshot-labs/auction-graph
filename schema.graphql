@@ -8,6 +8,7 @@ type Order @entity {
   price: BigDecimal!
   volume: BigDecimal!
   timestamp: BigInt!
+  transactionId: Bytes!
 }
 
 type User @entity {
