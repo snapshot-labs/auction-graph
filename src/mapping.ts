@@ -673,38 +673,19 @@ function updateClearingOrderAndVolume(event: ethereum.Event, auctionId: BigInt):
 	}
 }
 
-function getBucketedPrice(price: BigDecimal): BigDecimal {
-	// Determine bucketing based on price magnitude
-	// For prices >= 1: bucket to 0.01
-	// For prices >= 0.01: bucket to 0.0001
-	// For prices < 0.01: bucket to 0.000001
-	let bucketSize: BigDecimal;
-	
-	if (price.ge(BigDecimal.fromString("1"))) {
-		bucketSize = BigDecimal.fromString("0.01");
-	} else if (price.ge(BigDecimal.fromString("0.01"))) {
-		bucketSize = BigDecimal.fromString("0.0001");
-	} else {
-		bucketSize = BigDecimal.fromString("0.000001");
-	}
-	
-	return price.div(bucketSize).truncate(0).times(bucketSize);
-}
-
 function updateAuctionPriceLevel(
 	auctionId: string,
 	price: BigDecimal,
 	volume: BigDecimal,
 	isNewOrder: boolean
 ): void {
-	let bucketedPrice = getBucketedPrice(price);
-	let priceLevelId = auctionId + "-" + bucketedPrice.toString();
+	let priceLevelId = auctionId + "-" + price.toString();
 	
 	let priceLevel = AuctionPriceLevel.load(priceLevelId);
 	if (!priceLevel) {
 		priceLevel = new AuctionPriceLevel(priceLevelId);
 		priceLevel.auction = auctionId;
-		priceLevel.price = bucketedPrice;
+		priceLevel.price = price;
 		priceLevel.volume = BigDecimal.fromString("0");
 		priceLevel.bidCount = 0;
 	}
