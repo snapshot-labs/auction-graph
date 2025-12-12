@@ -37,7 +37,7 @@
     "deploy:goerli-studio": "yarn prepare:goerli && graph deploy --node https://api.studio.thegraph.com/deploy/ ga-goerli",
     "deploy:gnosis-studio": "yarn prepare:gnosis && graph deploy --node https://api.studio.thegraph.com/deploy/ ga-gnosis",
     "deploy:mumbai-studio": "yarn prepare:mumbai && graph deploy --node https://api.studio.thegraph.com/deploy/ ga-mumbai",
-    "deploy:mainnet-studio": "yarn prepare:mainnet && graph deploy auction-graph-mainnet",
+    "deploy:mainnet-studio": "yarn prepare:mainnet && graph deploy --studio auction-graph-mainnet",
     "deploy:studio": "yarn deploy:mainnet-studio && yarn deploy:goerli-studio && yarn deploy:gnosis-studio && yarn deploy:mumbai-studio && yarn deploy:avalanche-studio && yarn deploy:fuji-studio",
     "deploy": "yarn deploy:studio && yarn deploy:hosted-prod",
     "create-local": "graph create --node http://localhost:8020/ gnosisauctionservice",
